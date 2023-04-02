@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float rotationThrust = 1f;
+    [SerializeField] AudioClip mainEngine;
+
+    [SerializeField] ParticleSystem mainEngineParticle;
+    [SerializeField] ParticleSystem leftThrusterParticle;
+    [SerializeField] ParticleSystem rightThrusterParticle;
+
     Rigidbody rb;
     AudioSource audioSource;
-    // Start is called before the first frame update
+
+    bool isAlive;
+   
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ProcessThrust();
@@ -29,8 +37,17 @@ public class Movement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * mainThrust *  Time.deltaTime);  
             if(!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
+            if (!mainEngineParticle.isPlaying)
+            {
+                mainEngineParticle.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+            mainEngineParticle.Stop();
         }
         
     }
@@ -40,13 +57,27 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotationThrust);
+            if (!rightThrusterParticle.isPlaying)
+            {
+                rightThrusterParticle.Play();
+            }
         }
     
         else if (Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotationThrust);
+            if (!leftThrusterParticle.isPlaying)
+            {
+                leftThrusterParticle.Play();
+            }
+        }
+        else
+        {
+            rightThrusterParticle.Stop();
+            leftThrusterParticle.Stop();
         }
     }
+
     public void ApplyRotation(float rotationThisFrame)
     {
         rb.freezeRotation = true;
