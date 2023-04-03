@@ -15,15 +15,33 @@ public class CollisionHandler : MonoBehaviour
    AudioSource audioSource;
 
    bool isTrangsitioning = false;
+   bool collistionDisable = false;
 
    void Start()
    {
         audioSource = GetComponent<AudioSource>();
    }
    
+     void Update()
+     {
+          RespondToDebugKeys();
+     }
+
+     void RespondToDebugKeys()
+     {
+          if (Input.GetKeyDown(KeyCode.L))
+          {
+               LoadNextLevel();
+          }
+          else if (Input.GetKeyDown(KeyCode.C))
+          {
+               collistionDisable = !collistionDisable;
+          }
+     }
+
    void OnCollisionEnter(Collision other) 
    {
-        if (isTrangsitioning)
+        if (isTrangsitioning || collistionDisable)
         {
             return;
         }
@@ -46,6 +64,7 @@ public class CollisionHandler : MonoBehaviour
         isTrangsitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(success);
+        successParticale.Play();
         GetComponent<Movement>().enabled = false;
         Invoke ("LoadNextLevel", levelLoadDelay);
    }
@@ -55,6 +74,7 @@ public class CollisionHandler : MonoBehaviour
         isTrangsitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
+        crashParticle.Play();
         GetComponent<Movement>().enabled = false;
         Invoke ("ReloadLevel", levelLoadDelay);
    }

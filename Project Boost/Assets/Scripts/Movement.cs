@@ -30,28 +30,44 @@ public class Movement : MonoBehaviour
         ProcessRotation();
     }
 
+  
+
     void ProcessThrust()
     {
         if (Input.GetKey (KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * mainThrust *  Time.deltaTime);  
-            if(!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-            if (!mainEngineParticle.isPlaying)
-            {
-                mainEngineParticle.Play();
-            }
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
-            mainEngineParticle.Stop();
+            StopThrusting();
         }
-        
     }
 
+    public void ApplyRotation(float rotationThisFrame)
+    {
+        rb.freezeRotation = true;
+        transform.Rotate(Vector3.forward * rotationThisFrame *  Time.deltaTime);
+        rb.freezeRotation = false;
+    }
+
+    void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+        if (!mainEngineParticle.isPlaying)
+        {
+            mainEngineParticle.Play();
+        }
+    }
+      private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticle.Stop();
+    }
     void ProcessRotation()
     {
         if (Input.GetKey(KeyCode.A))
@@ -76,12 +92,5 @@ public class Movement : MonoBehaviour
             rightThrusterParticle.Stop();
             leftThrusterParticle.Stop();
         }
-    }
-
-    public void ApplyRotation(float rotationThisFrame)
-    {
-        rb.freezeRotation = true;
-        transform.Rotate(Vector3.forward * rotationThisFrame *  Time.deltaTime);
-        rb.freezeRotation = false;
     }
 }
