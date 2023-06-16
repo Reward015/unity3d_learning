@@ -12,14 +12,14 @@ public class CoordinateLabeler : MonoBehaviour
 
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
-    Waypoint waypoint;
+    Tile waypoint;
 
     void Awake()
     {
         label = GetComponent<TextMeshPro>();
         label.enabled = false;
 
-        waypoint = GetComponentInParent<Waypoint>();
+        waypoint = GetComponentInParent<Tile>();
         DisplayCoordinates();
     }
     
