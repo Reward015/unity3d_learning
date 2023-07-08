@@ -24,7 +24,6 @@ Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.State.ref.dll_255AEA40301341C
 Library\Bee\artifacts\mvdfrm\Unity.VisualStudio.Editor.ref.dll_7E7DD2F3C2805153.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.UI.ref.dll_BDC26BE24454476F.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.UI.ref.dll_7A28423D4A766FDA.mvfrm
-Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_6E83E07FCF0A3254.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.CoreModule.dll_70E48F427064E697.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.DeviceSimulatorModule.dll_04FC76CC5A03ABDA.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.DiagnosticsModule.dll_99EAFEE40C4657A8.mvfrm
@@ -104,3 +103,4 @@ Library\Bee\artifacts\mvdfrm\UnityEngine.VRModule.dll_286A929584C8D32F.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.WindModule.dll_0A543DBDA9A0D02B.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.XRModule.dll_5B29559A0E03208D.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.WebGLModule.dll_0EA74A539BD02606.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_5C7A9F3A6C398FCC.mvfrm
