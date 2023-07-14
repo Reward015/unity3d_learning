@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
-    [SerializeField] Vector2Int startCoordiantes;
-    public Vector2Int StartCoordinates { get {return startCoordiantes; } }
+    [SerializeField] Vector2Int startCoordinates;
+    public Vector2Int StartCoordinates { get {return startCoordinates; } }
     [SerializeField] Vector2Int destinationCoordinates;
     public Vector2Int DestinationCoordinates {get { return destinationCoordinates; } }
 
-    Node starNode;
+    Node startNode;
     Node destinationNode;
     Node currentSearchNode;
 
@@ -26,8 +26,8 @@ public class Pathfinder : MonoBehaviour
         if(gridManager != null)
         {
             grid = gridManager.Grid;
-            starNode = grid[startCoordiantes];
-            destinationNode = grid[startCoordiantes];
+            startNode = grid[startCoordinates];       
+            destinationNode = grid[destinationCoordinates];
         }
 
     }
@@ -38,8 +38,13 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> GetNewPath()
     {
+        return GetNewPath(startCoordinates);
+    }
+
+    public List<Node> GetNewPath(Vector2Int coordinates)
+    {
         gridManager.ResetNodes();
-        BreadthFirstSearch();
+        BreadthFirstSearch(coordinates);
         return BuildPath();
     }
 
@@ -68,9 +73,9 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    void BreadthFirstSearch()
+    void BreadthFirstSearch(Vector2Int coordinates)
     {
-        starNode.isWalkable = true;
+        startNode.isWalkable = true;
         destinationNode.isWalkable = true;
         
         frontier.Clear();
@@ -79,8 +84,8 @@ public class Pathfinder : MonoBehaviour
 
         bool isRunning = true;
 
-        frontier.Enqueue(starNode);
-        reached.Add(startCoordiantes, starNode);
+        frontier.Enqueue(grid[coordinates]);
+        reached.Add(startCoordinates, grid[coordinates]);
 
         while(frontier.Count > 0 && isRunning)
         {
@@ -132,5 +137,10 @@ public class Pathfinder : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void NotifyReceivers()
+    {
+        BroadcastMessage("ReaclculatePath", false, SendMessageOptions.DontRequireReceiver);
     }
 }
