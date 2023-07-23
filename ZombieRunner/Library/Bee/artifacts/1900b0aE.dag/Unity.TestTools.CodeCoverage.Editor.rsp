@@ -116,6 +116,7 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_INPUT_SYSTEM
+-define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CONDITIONAL_IGNORE_SUPPORTED
 -define:TEST_FRAMEWORK_1_1_18_OR_NEWER
 -define:NO_COV_EDITORPREF
@@ -205,7 +206,6 @@
 -r:"D:/Unity/Unity Hub/2021.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll"
 -r:"D:/Unity/Unity Hub/2021.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
 -r:"D:/Unity/Unity Hub/2021.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
--r:"D:/Unity/Unity Hub/2021.3.12f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
 -r:"D:/Unity/Unity Hub/2021.3.12f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"D:/Unity/Unity Hub/2021.3.12f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/Microsoft.Win32.Primitives.dll"
 -r:"D:/Unity/Unity Hub/2021.3.12f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/netstandard.dll"
